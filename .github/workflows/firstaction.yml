@@ -36,7 +36,7 @@ jobs:
       - name: Docker run tests
         run: | 
           docker build -t mrclapham/react-test -f Dockerfile.dev .
-          docker run -e CI=true mrclapham/react-test npm run test
+          docker run -e CI=true mrclapham/react-test npm run test -- --coverage
 
 
   # This workflow contains a single job called "build"
@@ -48,7 +48,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      # Log into Docker Hub and run Donerfile.dev
+      # Log into Docker Hub and run Dockerfile.dev
       - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - run: docker build -t mrclapham/react-test -f Dockerfile.dev .
 
