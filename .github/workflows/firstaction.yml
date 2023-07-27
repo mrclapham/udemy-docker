@@ -34,8 +34,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Docker build
-        - run: docker build -t mrclapham/react-test -f Dockerfile.dev .
-        - run: docker run -e CI=true mrclapham/react-test npm run test
+        run: | 
+          docker build -t mrclapham/react-test -f Dockerfile.dev .
+          docker run -e CI=true mrclapham/react-test npm run test
 
 
   # This workflow contains a single job called "build"
