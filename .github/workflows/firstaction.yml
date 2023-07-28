@@ -66,4 +66,4 @@ jobs:
           region: eu-west-2
           version_label: ${{ github.sha }}
           deployment_package: deploy.zip
-    
+    # Force build to run after tests
