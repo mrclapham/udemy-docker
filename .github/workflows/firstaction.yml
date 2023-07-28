@@ -53,13 +53,6 @@ jobs:
       - run: docker build -t mrclapham/react-test -f Dockerfile.dev .
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
-
-
-  # This workflow contains a single job called "deploy"
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v18
         with:
