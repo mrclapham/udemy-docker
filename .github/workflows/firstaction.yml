@@ -51,7 +51,7 @@ jobs:
       - uses: actions/checkout@v3
       # Log into Docker Hub and run Dockerfile.dev
       - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-      - run: docker build -t mrclapham/react-test -f Dockerfile.dev .
+      - run: docker build -t mrclapham/docker-react-eu-bench -f Dockerfile.dev .
       # Push to DockerHub
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
@@ -60,10 +60,10 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-          application_name: docker-react-bench
-          environment_name: Docker-react-bench-env
-          existing_bucket_name: elasticbeanstalk-us-east-1-318746526342
-          region: us-east-1
+          application_name: docker-react-eu-bench
+          environment_name: Docker-react-eu-bench-env
+          existing_bucket_name: elasticbeanstalk-eu-west-2-318746526342
+          region: eu-west-2
           version_label: ${{ github.sha }}
           deployment_package: deploy.zip
     
