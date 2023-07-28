@@ -37,6 +37,7 @@ jobs:
         run: | 
           docker build -t mrclapham/react-test -f Dockerfile.dev .
           docker run -e CI=true mrclapham/react-test npm run test -- --coverage
+          docker push mrclapham/react-test
 
 
   # This workflow contains a single job called "build"
@@ -51,6 +52,7 @@ jobs:
       # Log into Docker Hub and run Dockerfile.dev
       - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - run: docker build -t mrclapham/react-test -f Dockerfile.dev .
+      # Push to DockerHub
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
       - name: Deploy to EB
