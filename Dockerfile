@@ -11,4 +11,5 @@ FROM nginx
 # Need to expose port 80 for AWS Elastic Beanstalk
 EXPOSE 80
 COPY --from=builder /app/build /usr/share/nginx/html
-# default command of nginx is to start the server so we don't need to specify it
+# default command of nginx is to start the server so we don't need to specify it, or do we? added below.
+CMD ["nginx", "-g", "daemon off;"]
